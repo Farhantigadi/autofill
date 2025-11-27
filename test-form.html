@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Autofill Test Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+    .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+    .section h3 { margin-top: 0; color: #333; }
+    input, textarea, select { width: 100%; padding: 8px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 3px; }
+    label { display: block; font-weight: bold; margin-top: 10px; }
+    .row { display: flex; gap: 15px; }
+    .row > div { flex: 1; }
+    button { background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; }
+    .prefilled { background-color: #f0f8ff; }
+    .delayed { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Job Application Test Form</h1>
+  <p><strong>Instructions:</strong> Use this form to test the autofill extension. Some fields are pre-filled, some load with delay.</p>
+
+  <form>
+    <!-- Basic Information -->
+    <div class="section">
+      <h3>Personal Information</h3>
+      <div class="row">
+        <div>
+          <label>First Name *</label>
+          <input type="text" name="firstName" placeholder="Enter first name" required>
+        </div>
+        <div>
+          <label>Last Name *</label>
+          <input type="text" name="lastName" placeholder="Enter last name" required>
+        </div>
+      </div>
+      
+      <label>Full Name</label>
+      <input type="text" name="fullName" placeholder="Complete name">
+      
+      <div class="row">
+        <div>
+          <label>Email Address *</label>
+          <input type="email" name="email" placeholder="your.email@example.com" required>
+        </div>
+        <div>
+          <label>Phone Number</label>
+          <input type="tel" name="phone" placeholder="+91 XXXXXXXXXX">
+        </div>
+      </div>
+    </div>
+
+    <!-- Address Information -->
+    <div class="section">
+      <h3>Address Details</h3>
+      <label>Street Address</label>
+      <input type="text" name="address" placeholder="Street address">
+      
+      <div class="row">
+        <div>
+          <label>City</label>
+          <input type="text" name="city" placeholder="City">
+        </div>
+        <div>
+          <label>State/Province</label>
+          <input type="text" name="state" placeholder="State">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div>
+          <label>Country</label>
+          <select name="country">
+            <option value="">Select Country</option>
+            <option value="IN">India</option>
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="CA">Canada</option>
+          </select>
+        </div>
+        <div>
+          <label>Postal Code</label>
+          <input type="text" name="postalCode" placeholder="ZIP/Postal Code">
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Links -->
+    <div class="section">
+      <h3>Professional Profiles</h3>
+      <label>LinkedIn Profile</label>
+      <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+      
+      <label>GitHub Profile</label>
+      <input type="url" name="github" placeholder="https://github.com/yourusername">
+      
+      <label>Portfolio Website</label>
+      <input type="url" name="portfolio" placeholder="https://yourportfolio.com">
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <h3>Work Experience</h3>
+      <div class="row">
+        <div>
+          <label>Current Company</label>
+          <input type="text" name="company" placeholder="Company name">
+        </div>
+        <div>
+          <label>Job Title</label>
+          <input type="text" name="title" placeholder="Your position">
+        </div>
+      </div>
+    </div>
+
+    <!-- Pre-filled Fields Test -->
+    <div class="section">
+      <h3>Pre-filled Fields (Should NOT be overwritten)</h3>
+      <label>Pre-filled Email</label>
+      <input type="email" name="prefilledEmail" value="existing@company.com" class="prefilled">
+      
+      <label>Pre-filled Name</label>
+      <input type="text" name="prefilledName" value="Existing User" class="prefilled">
+    </div>
+
+    <!-- Skills and Cover Letter -->
+    <div class="section">
+      <h3>Additional Information</h3>
+      <label>Skills</label>
+      <textarea name="skills" placeholder="List your technical skills" rows="3"></textarea>
+      
+      <label>Cover Letter</label>
+      <textarea name="coverLetter" placeholder="Why are you interested in this position?" rows="5"></textarea>
+    </div>
+
+    <!-- Delayed Loading Fields -->
+    <div class="section delayed" id="delayedSection">
+      <h3>Delayed Loading Fields</h3>
+      <label>Additional Email</label>
+      <input type="email" name="additionalEmail" placeholder="Secondary email">
+      
+      <label>Emergency Contact</label>
+      <input type="tel" name="emergencyPhone" placeholder="Emergency contact number">
+    </div>
+
+    <!-- Edge Cases -->
+    <div class="section">
+      <h3>Edge Case Fields</h3>
+      <label>Disabled Field</label>
+      <input type="text" name="disabledField" placeholder="This is disabled" disabled>
+      
+      <label>Readonly Field</label>
+      <input type="text" name="readonlyField" placeholder="This is readonly" readonly>
+      
+      <label>Hidden Field</label>
+      <input type="hidden" name="hiddenField" value="hidden">
+      
+      <label>Unusual Field Name</label>
+      <input type="text" name="applicant_first_name_field" placeholder="Unusual naming convention">
+    </div>
+
+    <button type="button" onclick="loadDelayedFields()">Load More Fields</button>
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <!-- Iframe Test -->
+  <div class="section">
+    <h3>Iframe Test</h3>
+    <iframe id="testIframe" width="100%" height="300" style="border: 1px solid #ccc;"></iframe>
+  </div>
+
+  <script>
+    // Simulate delayed field loading
+    function loadDelayedFields() {
+      document.getElementById('delayedSection').style.display = 'block';
+      console.log('Delayed fields loaded');
+    }
+
+    // Create iframe with form
+    const iframeContent = `
+      <html>
+      <body style="font-family: Arial; padding: 20px;">
+        <h4>Iframe Form Test</h4>
+        <form>
+          <label>Name in Iframe:</label><br>
+          <input type="text" name="iframeName" placeholder="Name"><br><br>
+          <label>Email in Iframe:</label><br>
+          <input type="email" name="iframeEmail" placeholder="Email"><br><br>
+          <label>Phone in Iframe:</label><br>
+          <input type="tel" name="iframePhone" placeholder="Phone"><br>
+        </form>
+      </body>
+      </html>
+    `;
+    
+    document.getElementById('testIframe').onload = function() {
+      this.contentDocument.open();
+      this.contentDocument.write(iframeContent);
+      this.contentDocument.close();
+    };
+    
+    // Auto-load delayed fields after 3 seconds
+    setTimeout(loadDelayedFields, 3000);
+
+    // Form submission handler
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Form submitted! Check console for filled values.');
+      
+      const formData = new FormData(this);
+      console.log('Form Data:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+    });
+  </script>
+</body>
+</html>
