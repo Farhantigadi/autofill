@@ -53,27 +53,38 @@ class PopupController {
 
   getDefaultProfile() {
     return {
-      firstName: "Mohammad Farhan",
+      firstName: "Mohammadfarhan",
       lastName: "Tigadi",
-      fullName: "Mohammad Farhan Tigadi",
+      fullName: "Mohammadfarhan Tigadi",
       email: "farhantigadi123@gmail.com",
-      phone: "+91 6362888293",
+      phone: "6362888293",
+      phoneExtension: "+91",
       location: "Belagavi, Karnataka, India",
       city: "Belagavi",
       state: "Karnataka",
       country: "India",
       postalCode: "590001",
       addressLine1: "Belagavi, Karnataka",
+      addressLine2: "",
       linkedin: "https://www.linkedin.com/in/mohammadfarhan-tigadi/",
       github: "https://github.com/Farhantigadi",
       portfolio: "https://farhan-portfolio-beta.vercel.app/",
       educationHighest: "Bachelor of Engineering in Electronics & Communication",
       educationCollege: "S. G. Balekundri Institute of Technology, Belagavi",
       educationCGPA: "8.35",
+      educationStart: "Dec 2021",
+      educationEnd: "May 2025",
+      experienceStatus: "Fresher / Intern",
       currentCompany: "Alstonair Technologies",
       currentRole: "Software Developer Intern",
+      workLocation: "Bangalore",
+      experienceStartDate: "Aug 2025",
+      experienceEndDate: "Nov 2025",
+      roleDescription: "Designed and implemented RESTful APIs using Spring Boot. Integrated backend with MySQL database. Supported frontend using React, HTML, CSS, and JavaScript. Used Git & GitHub for version control. Performed API testing using Postman.",
       skills: ["Java", "Spring Boot", "REST APIs", "JWT Authentication", "MySQL", "JPA", "Hibernate", "Git", "GitHub", "GitHub Actions", "Agile Scrum", "Postman", "HTML", "CSS", "JavaScript", "React (Basics)"],
-      coverLetterTemplate: "Dear Hiring Manager, I am excited to apply for this role as I have strong experience with Java, Spring Boot, REST APIs, and MySQL..."
+      certifications: ["Java Development - Kodnest", "Java Programming Beginner to Master - Udemy", "SQL Programming & Data Manipulation - Udemy", "Spring Boot 3 + Spring Framework 6 - Udemy"],
+      resumeLink: "",
+      coverLetterTemplate: "Dear Hiring Manager,\n\nI am excited to apply for this position. As a final-year Electronics & Communication Engineering student at S. G. Balekundri Institute of Technology with a CGPA of 8.35, I have developed strong technical skills in Java development and backend technologies.\n\nDuring my internship at Alstonair Technologies (Aug-Nov 2025), I gained hands-on experience designing RESTful APIs using Spring Boot, integrating MySQL databases, and supporting frontend development with React. I have successfully built projects including a Banking Application with JWT security and a Journal App with role-based access control.\n\nMy technical expertise includes Java, Spring Boot, REST APIs, JWT Authentication, MySQL, JPA, Hibernate, Git, and Agile methodologies. I have completed certifications in Java Development, Spring Framework, and SQL Programming, demonstrating my commitment to continuous learning.\n\nI am particularly drawn to backend development and would welcome the opportunity to contribute to your team's success. I am available to start immediately and open to any work arrangement.\n\nThank you for considering my application.\n\nSincerely,\nMohammad Farhan Tigadi"
     };
   }
 }

@@ -86,6 +86,10 @@ function getValueForElement(element) {
     console.log('Matched phone');
     return profile.phone;
   }
+  if (/phone.*ext|extension|country.*code|phone.*country/.test(identifier)) {
+    console.log('Matched phone extension');
+    return '+91';
+  }
   if (/city/.test(identifier)) {
     console.log('Matched city');
     return profile.city;
@@ -125,6 +129,74 @@ function getValueForElement(element) {
   if (/title|position|role/.test(identifier)) {
     console.log('Matched role');
     return profile.currentRole;
+  }
+  if (/work.*location|job.*location|office.*location/.test(identifier)) {
+    console.log('Matched work location');
+    return profile.workLocation;
+  }
+  if (/start.*date|from.*date|begin.*date/.test(identifier)) {
+    console.log('Matched start date');
+    return profile.experienceStartDate;
+  }
+  if (/end.*date|to.*date|finish.*date/.test(identifier)) {
+    console.log('Matched end date');
+    return profile.experienceEndDate;
+  }
+  if (/role.*desc|job.*desc|responsibilities|duties/.test(identifier)) {
+    console.log('Matched role description');
+    return profile.roleDescription;
+  }
+  if (/education.*start|college.*start/.test(identifier)) {
+    console.log('Matched education start');
+    return profile.educationStart;
+  }
+  if (/education.*end|college.*end|graduation/.test(identifier)) {
+    console.log('Matched education end');
+    return profile.educationEnd;
+  }
+  if (/experience.*status|career.*level/.test(identifier)) {
+    console.log('Matched experience status');
+    return profile.experienceStatus;
+  }
+  if (/resume.*link|cv.*link/.test(identifier)) {
+    console.log('Matched resume link');
+    return profile.resumeLink;
+  }
+  if (/job.*title/.test(identifier)) {
+    console.log('Matched job title');
+    return profile.currentRole;
+  }
+  if (/location/.test(identifier) && !/work.*location|job.*location/.test(identifier)) {
+    console.log('Matched general location');
+    return profile.location;
+  }
+  if (/salary.*expect|expected.*salary/.test(identifier)) {
+    console.log('Matched salary expectation');
+    return '4.2 LPA';
+  }
+  if (/notice.*period/.test(identifier)) {
+    console.log('Matched notice period');
+    return 'Immediate';
+  }
+  if (/work.*permit|permit.*work/.test(identifier)) {
+    console.log('Matched work permit');
+    return 'Yes';
+  }
+  if (/18.*years|age.*18/.test(identifier)) {
+    console.log('Matched age confirmation');
+    return 'Yes';
+  }
+  if (/third.*party|contractor/.test(identifier)) {
+    console.log('Matched contractor question');
+    return 'No';
+  }
+  if (/future.*opportunities|talent.*communications/.test(identifier)) {
+    console.log('Matched future opportunities');
+    return 'Yes';
+  }
+  if (/citizenship|residence|countries/.test(identifier)) {
+    console.log('Matched citizenship question');
+    return 'None of the above';
   }
   
   console.log('No match found for:', identifier);

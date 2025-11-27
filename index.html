@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html><body>
-<h1>Test Form</h1>
+<h1>Job Application Test Form</h1>
+
+<h2>Personal Information</h2>
 <form>
   <input name="firstName" placeholder="First Name"><br><br>
   <input name="lastName" placeholder="Last Name"><br><br>
   <input type="email" name="email" placeholder="Email"><br><br>
   <input name="phone" placeholder="Phone"><br><br>
+  <input name="phoneExtension" placeholder="Phone Extension"><br><br>
   <input name="city" placeholder="City"><br><br>
+  <input name="state" placeholder="State"><br><br>
+  <input name="country" placeholder="Country"><br><br>
+  <input name="postalCode" placeholder="Postal Code"><br><br>
+  
+  <h2>Professional Links</h2>
+  <input name="linkedin" placeholder="LinkedIn Profile"><br><br>
+  <input name="github" placeholder="GitHub Profile"><br><br>
+  <input name="portfolio" placeholder="Portfolio Website"><br><br>
+  
+  <h2>Work Experience</h2>
+  <input name="jobTitle" placeholder="Job Title"><br><br>
+  <input name="company" placeholder="Company"><br><br>
+  <input name="workLocation" placeholder="Work Location"><br><br>
+  <input name="experienceStartDate" placeholder="Start Date (MM/YYYY)"><br><br>
+  <input name="experienceEndDate" placeholder="End Date (MM/YYYY)"><br><br>
+  <textarea name="roleDescription" placeholder="Role Description"></textarea><br><br>
+  
+  <h2>Education</h2>
+  <input name="educationCollege" placeholder="College/University"><br><br>
+  <input name="educationHighest" placeholder="Degree"><br><br>
+  <input name="educationCGPA" placeholder="CGPA/Grade"><br><br>
+  <input name="educationStart" placeholder="Education Start"><br><br>
+  <input name="educationEnd" placeholder="Education End"><br><br>
+  
+  <h2>Application Questions</h2>
+  <input name="salaryExpectation" placeholder="Salary Expectations"><br><br>
+  <input name="noticePeriod" placeholder="Notice Period"><br><br>
+  <input name="workPermit" placeholder="Work Permit (Yes/No)"><br><br>
+  <input name="ageConfirmation" placeholder="18 years confirmation"><br><br>
+  <input name="thirdPartyContractor" placeholder="Third party contractor"><br><br>
+  <input name="futureOpportunities" placeholder="Future opportunities"><br><br>
+  <input name="citizenship" placeholder="Citizenship/Countries"><br><br>
+  
+  <h2>Additional</h2>
+  <textarea name="skills" placeholder="Skills (comma separated)"></textarea><br><br>
+  <textarea name="coverLetter" placeholder="Cover Letter"></textarea><br><br>
+  <input name="resumeLink" placeholder="Resume Link"><br><br>
+  
+  <button type="button" onclick="clearForm()">Clear Form</button>
 </form>
+
+<script>
+function clearForm() {
+  document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+}
+</script>
+
 </body></html>
