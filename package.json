@@ -1,0 +1,26 @@
+{
+  "name": "job-autofill-extension",
+  "version": "1.0.0",
+  "description": "Chrome extension for auto-filling job application forms",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:prod": "node scripts/build-production.bat",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "chrome-extension",
+    "autofill",
+    "job-application",
+    "workday",
+    "form-filler"
+  ],
+  "author": "Mohammadfarhan Tigadi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Farhantigadi/job-autofill-extension"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
