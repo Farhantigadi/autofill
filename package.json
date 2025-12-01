@@ -6,7 +6,13 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build:prod": "node scripts/build-production.bat",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/ --ext .js",
+    "lint:fix": "eslint src/ --ext .js --fix",
+    "validate": "node scripts/validate-manifest.js",
+    "package": "npm run build && cd dist && zip -r ../job-autofill-extension.zip .",
+    "dev": "npm run build && echo 'Load dist/ folder in chrome://extensions/'"
   },
   "keywords": [
     "chrome-extension",
@@ -21,6 +27,28 @@
     "type": "git",
     "url": "https://github.com/Farhantigadi/job-autofill-extension"
   },
-  "devDependencies": {},
-  "dependencies": {}
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "@jest/globals": "^29.7.0"
+  },
+  "dependencies": {},
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "webextensions": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "error",
+      "prefer-const": "error",
+      "no-var": "error"
+    }
+  }
 }

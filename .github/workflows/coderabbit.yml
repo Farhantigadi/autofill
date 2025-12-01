@@ -1,0 +1,48 @@
+name: CodeRabbit Integration
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  coderabbit-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CodeRabbit Review
+        uses: coderabbitai/coderabbit-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+  quality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run linting
+        run: npm run lint
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Validate manifest
+        run: npm run validate
+        
+      - name: Build extension
+        run: npm run build
+        
+      - name: Check bundle size
+        run: |
+          cd dist
+          SIZE=$(du -sb . | cut -f1)
+          echo "Bundle size: $SIZE bytes"
+          if [ $SIZE -gt 10485760 ]; then
+            echo "❌ Bundle too large (>10MB)"
+            exit 1
+          fi
+          echo "✅ Bundle size acceptable"
