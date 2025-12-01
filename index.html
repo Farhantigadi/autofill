@@ -262,7 +262,9 @@
 </div>
 
 <script>
-
+function clearForm() {
+  document.querySelectorAll('input, textarea, select').forEach(el => {
+    if (el.type === 'checkbox') {
       el.checked = false;
     } else {
       el.value = '';
@@ -314,21 +316,7 @@ function testAutofill() {
     }
   });
   
-  alert('Form filled!');
-}
-</script>
-
-</body>
-</html>
-      el.checked = false;
-    } else {
-      el.value = '';
-    }
-  });
-}
-
-function testAutofill() {
-  alert('Click your extension icon and then "Auto-Fill Form" to test!');
+  alert('Form filled with test data!');
 }
 </script>
 

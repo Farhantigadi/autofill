@@ -172,21 +172,14 @@ function getValueForElement(element) {
   if (matches(['^(.*drug.*test.*|.*substance.*test.*|.*drug.*screen.*|.*medical.*test.*)$'])) return 'Yes';
   if (matches(['^(.*relocation.*|.*willing.*relocate.*|.*move.*|.*relocate.*job.*|.*change.*location.*)$'])) return 'Yes';
   if (matches(['^(.*travel.*|.*willing.*travel.*|.*business.*travel.*|.*work.*travel.*|.*job.*travel.*)$'])) return 'Yes';
-  if (matches(['^(.*overtime.*|.*flexible.*hours.*|.*shift.*work.*|.*extended.*hours.*|.*work.*schedule.*)$'])) return 'Yes';rn profile.coverLetterTemplate;
-  if (/^(disability|accommodation|special.*needs)$/i.test(name) || /^(disability|accommodation|special.*needs)$/i.test(id)) return 'No';
-  if (/^(criminal.*record|background.*check|conviction)$/i.test(name) || /^(criminal.*record|background.*check|conviction)$/i.test(id)) return 'No';
-  if (/^(drug.*test|substance.*test)$/i.test(name) || /^(drug.*test|substance.*test)$/i.test(id)) return 'Yes';
-  if (/^(relocation|willing.*relocate|move)$/i.test(name) || /^(relocation|willing.*relocate|move)$/i.test(id)) return 'Yes';
-  if (/^(travel|willing.*travel|business.*travel)$/i.test(name) || /^(travel|willing.*travel|business.*travel)$/i.test(id)) return 'Yes';
-  if (/^(overtime|flexible.*hours|shift.*work)$/i.test(name) || /^(overtime|flexible.*hours|shift.*work)$/i.test(id)) return 'Yes';
+  if (matches(['^(.*overtime.*|.*flexible.*hours.*|.*shift.*work.*|.*extended.*hours.*|.*work.*schedule.*)$'])) return 'Yes';
   
-  // Broad fallback patterns for any missed variations
+  // Broad fallback patterns
   if (/first|fname|given/i.test(allText)) return profile.firstName;
   if (/last|lname|family|surname/i.test(allText)) return profile.lastName;
   if (/(^name$|full.*name|complete.*name)/i.test(allText)) return `${profile.firstName} ${profile.lastName}`;
   if (/email|mail/i.test(allText)) return profile.email;
   if (/phone|tel|mobile|contact/i.test(allText)) return profile.phone;
-  if (/address|street|addr/i.test(allText)) return `${profile.city}, ${profile.state}`;
   if (/city|town/i.test(allText)) return profile.city;
   if (/state|province/i.test(allText)) return profile.state;
   if (/country|nation/i.test(allText)) return profile.country;
@@ -197,20 +190,9 @@ function getValueForElement(element) {
   if (/github/i.test(allText)) return profile.github;
   if (/portfolio|website/i.test(allText)) return profile.portfolio;
   if (/skills|technologies/i.test(allText)) return profile.skills.join(', ');
-  if (/cover.*letter|motivation/i.test(allText)) return profile.coverLetterTemplate;
   if (/salary|compensation|pay/i.test(allText)) return '4.2 LPA';
-  if (/notice|availability/i.test(allText)) return 'Immediate';
   if (/permit|authorization/i.test(allText)) return 'Yes';
-  if (/age.*18|legal.*age/i.test(allText)) return 'Yes';
-  if (/future.*contact|opportunities/i.test(allText)) return 'Yes';
-  if (/third.*party|contractor/i.test(allText)) return 'No';
   if (/citizenship|nationality/i.test(allText)) return 'None of the above';
-  if (/disability|accommodation/i.test(allText)) return 'No';
-  if (/criminal|background|conviction/i.test(allText)) return 'No';
-  if (/drug.*test|substance/i.test(allText)) return 'Yes';
-  if (/relocate|move|relocation/i.test(allText)) return 'Yes';
-  if (/travel/i.test(allText)) return 'Yes';
-  if (/overtime|flexible.*hours/i.test(allText)) return 'Yes';
   
   console.log('No match found for:', { name, id, identifier });
   return null;
