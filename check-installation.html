@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extension Installation Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .check { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        button { padding: 10px 20px; margin: 10px 5px; font-size: 16px; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Extension Installation Checker</h1>
+    
+    <div id="results"></div>
+    
+    <button onclick="checkFiles()">Check Files</button>
+    <button onclick="checkManifest()">Check Manifest</button>
+    <button onclick="checkAll()">Check All</button>
+    
+    <h2>📋 Installation Steps</h2>
+    <ol>
+        <li>Open Chrome → <code>chrome://extensions/</code></li>
+        <li>Enable "Developer mode" (top-right toggle)</li>
+        <li>Click "Load unpacked"</li>
+        <li>Select the <strong>Autofill</strong> folder (this folder)</li>
+        <li>Extension should appear with name "Job Application Autofill"</li>
+    </ol>
+    
+    <h2>🚨 Common Issues</h2>
+    <ul>
+        <li><strong>Wrong folder selected:</strong> Must select folder containing manifest.json</li>
+        <li><strong>Files missing:</strong> Check if all required files exist</li>
+        <li><strong>Syntax errors:</strong> Check browser console for errors</li>
+        <li><strong>Permissions:</strong> Try running Chrome as administrator</li>
+    </ul>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(message, type = 'success') {
+            const div = document.createElement('div');
+            div.className = `check ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+        
+        function clearResults() {
+            results.innerHTML = '';
+        }
+        
+        async function checkFiles() {
+            clearResults();
+            addResult('🔍 Checking required files...', 'warning');
+            
+            const requiredFiles = [
+                'manifest.json',
+                'src/popup/popup.html',
+                'src/popup/popup.js',
+                'src/content/content.js',
+                'src/profile/profile.html',
+                'src/profile/profile.js',
+                'public/icons/icon.svg'
+            ];
+            
+            for (const file of requiredFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        addResult(`✅ ${file} - Found`, 'success');
+                    } else {
+                        addResult(`❌ ${file} - Missing (Status: ${response.status})`, 'error');
+                    }
+                } catch (error) {
+                    addResult(`❌ ${file} - Error: ${error.message}`, 'error');
+                }
+            }
+        }
+        
+        async function checkManifest() {
+            clearResults();
+            addResult('📋 Checking manifest.json...', 'warning');
+            
+            try {
+                const response = await fetch('manifest.json');
+                const manifest = await response.json();
+                
+                addResult(`✅ Name: ${manifest.name}`, 'success');
+                addResult(`✅ Version: ${manifest.version}`, 'success');
+                addResult(`✅ Manifest Version: ${manifest.manifest_version}`, 'success');
+                
+                if (manifest.manifest_version === 3) {
+                    addResult('✅ Using Manifest V3 (Correct)', 'success');
+                } else {
+                    addResult('⚠️ Not using Manifest V3', 'warning');
+                }
+                
+                if (manifest.permissions && manifest.permissions.length > 0) {
+                    addResult(`✅ Permissions: ${manifest.permissions.join(', ')}`, 'success');
+                }
+                
+                if (manifest.action && manifest.action.default_popup) {
+                    addResult(`✅ Popup configured: ${manifest.action.default_popup}`, 'success');
+                }
+                
+                addResult('✅ Manifest is valid!', 'success');
+                
+            } catch (error) {
+                addResult(`❌ Manifest Error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function checkAll() {
+            await checkFiles();
+            await checkManifest();
+            
+            addResult('🎯 Check complete! If all files show ✅, the extension should load properly.', 'warning');
+            addResult('If you still have issues, try: 1) Refresh chrome://extensions/ 2) Restart Chrome 3) Check antivirus settings', 'warning');
+        }
+    </script>
+</body>
+</html>

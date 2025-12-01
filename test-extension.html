@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Extension Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+    button { padding: 10px 20px; margin: 5px; }
+    .result { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Extension Test Page</h1>
+  
+  <div class="test-section">
+    <h2>Test Form</h2>
+    <form>
+      <input name="firstName" placeholder="First Name" /><br><br>
+      <input name="lastName" placeholder="Last Name" /><br><br>
+      <input name="email" placeholder="Email" /><br><br>
+      <input name="phone" placeholder="Phone" /><br><br>
+      <input name="city" placeholder="City" /><br><br>
+      <textarea name="skills" placeholder="Skills"></textarea><br><br>
+    </form>
+    
+    <button onclick="testFill()">Test Fill</button>
+    <button onclick="clearForm()">Clear</button>
+    
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="src/content/content.js"></script>
+  <script>
+    function testFill() {
+      if (window.testAutofill) {
+        window.testAutofill();
+      } else {
+        document.getElementById('result').innerHTML = 'Extension not loaded';
+      }
+    }
+    
+    function clearForm() {
+      document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+    }
+  </script>
+</body>
+</html>
