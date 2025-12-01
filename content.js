@@ -65,7 +65,89 @@ function getValueForElement(element) {
   const identifier = getElementIdentifier(element).toLowerCase();
   console.log('Checking element:', identifier);
   
-  // Use the flat profile structure from popup.js
+  // Exact field name matches first
+  if (identifier === 'phoneextension') {
+    console.log('Matched phoneExtension');
+    return '+91';
+  }
+  if (identifier === 'roledescription' || /role.*description|describe.*responsibilities/.test(identifier)) {
+    console.log('Matched roleDescription');
+    return profile.roleDescription;
+  }
+  if (identifier === 'educationcollege') {
+    console.log('Matched educationCollege');
+    return profile.educationCollege;
+  }
+  if (identifier === 'educationhighest') {
+    console.log('Matched educationHighest');
+    return profile.educationHighest;
+  }
+  if (identifier === 'educationcgpa') {
+    console.log('Matched educationCGPA');
+    return profile.educationCGPA;
+  }
+  if (identifier === 'educationend' || /graduation.*date|education.*end/.test(identifier)) {
+    console.log('Matched educationEnd');
+    return profile.educationEnd;
+  }
+  if (identifier === 'skills') {
+    console.log('Matched skills');
+    return profile.skills.join(', ');
+  }
+  if (identifier === 'coverletter' || /cover.*letter/.test(identifier)) {
+    console.log('Matched coverLetter');
+    return profile.coverLetterTemplate;
+  }
+  if (identifier === 'ageconfirmation') {
+    console.log('Matched ageConfirmation');
+    return 'Yes';
+  }
+  if (identifier === 'jobtitle') {
+    console.log('Matched jobTitle');
+    return profile.currentRole;
+  }
+  if (identifier === 'worklocation') {
+    console.log('Matched workLocation');
+    return profile.workLocation;
+  }
+  if (identifier === 'experiencestartdate' || /from|start.*date/.test(identifier)) {
+    console.log('Matched experienceStartDate');
+    return profile.experienceStartDate;
+  }
+  if (identifier === 'experienceenddate' || /to|end.*date/.test(identifier)) {
+    console.log('Matched experienceEndDate');
+    return profile.experienceEndDate;
+  }
+  if (identifier === 'salaryexpectation') {
+    console.log('Matched salaryExpectation');
+    return '4.2 LPA';
+  }
+  if (identifier === 'noticeperiod') {
+    console.log('Matched noticePeriod');
+    return 'Immediate';
+  }
+  if (identifier === 'workpermit') {
+    console.log('Matched workPermit');
+    return 'Yes';
+  }
+  if (identifier === 'thirdpartycontractor') {
+    console.log('Matched thirdPartyContractor');
+    return 'No';
+  }
+  if (identifier === 'futureopportunities') {
+    console.log('Matched futureOpportunities');
+    return 'Yes';
+  }
+  if (identifier === 'citizenship') {
+    console.log('Matched citizenship');
+    return 'None of the above';
+  }
+  if (identifier === 'resumelink') {
+    console.log('Matched resumeLink');
+    return profile.resumeLink;
+  }
+  
+  // Pattern matches for common fields
   if (/first.*name|fname/.test(identifier)) {
     console.log('Matched firstName');
     return profile.firstName;
@@ -74,21 +156,13 @@ function getValueForElement(element) {
     console.log('Matched lastName');
     return profile.lastName;
   }
-  if (/full.*name|^name$/.test(identifier)) {
-    console.log('Matched fullName');
-    return profile.fullName;
-  }
   if (/email/.test(identifier)) {
     console.log('Matched email');
     return profile.email;
   }
-  if (/phone|tel/.test(identifier)) {
+  if (/^phone$|^tel$/.test(identifier)) {
     console.log('Matched phone');
     return profile.phone;
-  }
-  if (/phone.*ext|extension|country.*code|phone.*country/.test(identifier)) {
-    console.log('Matched phone extension');
-    return '+91';
   }
   if (/city/.test(identifier)) {
     console.log('Matched city');
@@ -102,13 +176,9 @@ function getValueForElement(element) {
     console.log('Matched country');
     return profile.country;
   }
-  if (/zip|postal/.test(identifier)) {
+  if (/postal|zip/.test(identifier)) {
     console.log('Matched postal');
     return profile.postalCode;
-  }
-  if (/address|street/.test(identifier)) {
-    console.log('Matched address');
-    return profile.addressLine1;
   }
   if (/linkedin/.test(identifier)) {
     console.log('Matched linkedin');
@@ -118,85 +188,13 @@ function getValueForElement(element) {
     console.log('Matched github');
     return profile.github;
   }
-  if (/portfolio|website/.test(identifier)) {
+  if (/portfolio/.test(identifier)) {
     console.log('Matched portfolio');
     return profile.portfolio;
   }
-  if (/company|employer/.test(identifier)) {
+  if (/company/.test(identifier)) {
     console.log('Matched company');
     return profile.currentCompany;
-  }
-  if (/title|position|role/.test(identifier)) {
-    console.log('Matched role');
-    return profile.currentRole;
-  }
-  if (/work.*location|job.*location|office.*location/.test(identifier)) {
-    console.log('Matched work location');
-    return profile.workLocation;
-  }
-  if (/start.*date|from.*date|begin.*date/.test(identifier)) {
-    console.log('Matched start date');
-    return profile.experienceStartDate;
-  }
-  if (/end.*date|to.*date|finish.*date/.test(identifier)) {
-    console.log('Matched end date');
-    return profile.experienceEndDate;
-  }
-  if (/role.*desc|job.*desc|responsibilities|duties/.test(identifier)) {
-    console.log('Matched role description');
-    return profile.roleDescription;
-  }
-  if (/education.*start|college.*start/.test(identifier)) {
-    console.log('Matched education start');
-    return profile.educationStart;
-  }
-  if (/education.*end|college.*end|graduation/.test(identifier)) {
-    console.log('Matched education end');
-    return profile.educationEnd;
-  }
-  if (/experience.*status|career.*level/.test(identifier)) {
-    console.log('Matched experience status');
-    return profile.experienceStatus;
-  }
-  if (/resume.*link|cv.*link/.test(identifier)) {
-    console.log('Matched resume link');
-    return profile.resumeLink;
-  }
-  if (/job.*title/.test(identifier)) {
-    console.log('Matched job title');
-    return profile.currentRole;
-  }
-  if (/location/.test(identifier) && !/work.*location|job.*location/.test(identifier)) {
-    console.log('Matched general location');
-    return profile.location;
-  }
-  if (/salary.*expect|expected.*salary/.test(identifier)) {
-    console.log('Matched salary expectation');
-    return '4.2 LPA';
-  }
-  if (/notice.*period/.test(identifier)) {
-    console.log('Matched notice period');
-    return 'Immediate';
-  }
-  if (/work.*permit|permit.*work/.test(identifier)) {
-    console.log('Matched work permit');
-    return 'Yes';
-  }
-  if (/18.*years|age.*18/.test(identifier)) {
-    console.log('Matched age confirmation');
-    return 'Yes';
-  }
-  if (/third.*party|contractor/.test(identifier)) {
-    console.log('Matched contractor question');
-    return 'No';
-  }
-  if (/future.*opportunities|talent.*communications/.test(identifier)) {
-    console.log('Matched future opportunities');
-    return 'Yes';
-  }
-  if (/citizenship|residence|countries/.test(identifier)) {
-    console.log('Matched citizenship question');
-    return 'None of the above';
   }
   
   console.log('No match found for:', identifier);
@@ -204,12 +202,20 @@ function getValueForElement(element) {
 }
 
 function getElementIdentifier(element) {
-  return [
+  const parts = [
     element.name,
     element.id,
     element.placeholder,
     element.getAttribute('aria-label')
-  ].filter(Boolean).join(' ');
+  ].filter(Boolean);
+  
+  // Also check the label text
+  const label = element.closest('label') || document.querySelector(`label[for="${element.id}"]`);
+  if (label) {
+    parts.push(label.textContent.trim());
+  }
+  
+  return parts.join(' ');
 }
 
 function getElementName(element) {
@@ -217,7 +223,17 @@ function getElementName(element) {
 }
 
 function setElementValue(element, value) {
-  element.value = value;
+  if (element.tagName === 'SELECT') {
+    // For select elements, find the option that matches the value
+    const option = Array.from(element.options).find(opt => 
+      opt.value === value || opt.text === value
+    );
+    if (option) {
+      element.value = option.value;
+    }
+  } else {
+    element.value = value;
+  }
   element.dispatchEvent(new Event('input', { bubbles: true }));
   element.dispatchEvent(new Event('change', { bubbles: true }));
 }

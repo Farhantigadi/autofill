@@ -1,60 +1,281 @@
 <!DOCTYPE html>
-<html><body>
-<h1>Job Application Test Form</h1>
+<html>
+<head>
+  <title>Workday Application Form - Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    .form-section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .form-section h2 { color: #0073e6; margin-top: 0; border-bottom: 2px solid #0073e6; padding-bottom: 10px; }
+    .form-row { display: flex; gap: 20px; margin-bottom: 15px; }
+    .form-group { flex: 1; }
+    .form-group.full-width { flex: 100%; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+    input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+    textarea { height: 80px; resize: vertical; }
+    .required::after { content: " *"; color: red; }
+    .btn { background: #0073e6; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; margin: 10px 5px; }
+    .btn:hover { background: #005bb5; }
+    .btn-secondary { background: #6c757d; }
+    .checkbox-group { display: flex; align-items: center; gap: 10px; }
+    .checkbox-group input[type="checkbox"] { width: auto; }
+  </style>
+</head>
+<body>
 
-<h2>Personal Information</h2>
-<form>
-  <input name="firstName" placeholder="First Name"><br><br>
-  <input name="lastName" placeholder="Last Name"><br><br>
-  <input type="email" name="email" placeholder="Email"><br><br>
-  <input name="phone" placeholder="Phone"><br><br>
-  <input name="phoneExtension" placeholder="Phone Extension"><br><br>
-  <input name="city" placeholder="City"><br><br>
-  <input name="state" placeholder="State"><br><br>
-  <input name="country" placeholder="Country"><br><br>
-  <input name="postalCode" placeholder="Postal Code"><br><br>
+<h1>Associate Project Engineer - Application Form</h1>
+
+<div class="form-section">
+  <h2>My Information</h2>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="required">First Name</label>
+      <input name="firstName" type="text" required>
+    </div>
+    <div class="form-group">
+      <label class="required">Last Name</label>
+      <input name="lastName" type="text" required>
+    </div>
+  </div>
   
-  <h2>Professional Links</h2>
-  <input name="linkedin" placeholder="LinkedIn Profile"><br><br>
-  <input name="github" placeholder="GitHub Profile"><br><br>
-  <input name="portfolio" placeholder="Portfolio Website"><br><br>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="required">Email</label>
+      <input name="email" type="email" required>
+    </div>
+    <div class="form-group">
+      <label class="required">Phone</label>
+      <input name="phone" type="tel" required>
+    </div>
+  </div>
   
-  <h2>Work Experience</h2>
-  <input name="jobTitle" placeholder="Job Title"><br><br>
-  <input name="company" placeholder="Company"><br><br>
-  <input name="workLocation" placeholder="Work Location"><br><br>
-  <input name="experienceStartDate" placeholder="Start Date (MM/YYYY)"><br><br>
-  <input name="experienceEndDate" placeholder="End Date (MM/YYYY)"><br><br>
-  <textarea name="roleDescription" placeholder="Role Description"></textarea><br><br>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Phone Extension/Country Code</label>
+      <input name="phoneExtension" type="text" placeholder="e.g. +91">
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input name="city" type="text">
+    </div>
+  </div>
   
-  <h2>Education</h2>
-  <input name="educationCollege" placeholder="College/University"><br><br>
-  <input name="educationHighest" placeholder="Degree"><br><br>
-  <input name="educationCGPA" placeholder="CGPA/Grade"><br><br>
-  <input name="educationStart" placeholder="Education Start"><br><br>
-  <input name="educationEnd" placeholder="Education End"><br><br>
+  <div class="form-row">
+    <div class="form-group">
+      <label>State/Province</label>
+      <input name="state" type="text">
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <input name="country" type="text">
+    </div>
+  </div>
   
-  <h2>Application Questions</h2>
-  <input name="salaryExpectation" placeholder="Salary Expectations"><br><br>
-  <input name="noticePeriod" placeholder="Notice Period"><br><br>
-  <input name="workPermit" placeholder="Work Permit (Yes/No)"><br><br>
-  <input name="ageConfirmation" placeholder="18 years confirmation"><br><br>
-  <input name="thirdPartyContractor" placeholder="Third party contractor"><br><br>
-  <input name="futureOpportunities" placeholder="Future opportunities"><br><br>
-  <input name="citizenship" placeholder="Citizenship/Countries"><br><br>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Postal Code</label>
+      <input name="postalCode" type="text">
+    </div>
+    <div class="form-group"></div>
+  </div>
+</div>
+
+<div class="form-section">
+  <h2>My Experience</h2>
   
-  <h2>Additional</h2>
-  <textarea name="skills" placeholder="Skills (comma separated)"></textarea><br><br>
-  <textarea name="coverLetter" placeholder="Cover Letter"></textarea><br><br>
-  <input name="resumeLink" placeholder="Resume Link"><br><br>
+  <h3>Work Experience 1</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="required">Job Title</label>
+      <input name="jobTitle" type="text" required>
+    </div>
+    <div class="form-group">
+      <label class="required">Company</label>
+      <input name="company" type="text" required>
+    </div>
+  </div>
   
-  <button type="button" onclick="clearForm()">Clear Form</button>
-</form>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Location</label>
+      <input name="workLocation" type="text">
+    </div>
+    <div class="form-group">
+      <div class="checkbox-group">
+        <input type="checkbox" id="currentWork">
+        <label for="currentWork">I currently work here</label>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label class="required">From</label>
+      <input name="experienceStartDate" type="text" placeholder="MM/YYYY" required>
+    </div>
+    <div class="form-group">
+      <label class="required">To</label>
+      <input name="experienceEndDate" type="text" placeholder="MM/YYYY" required>
+    </div>
+  </div>
+  
+  <div class="form-group full-width">
+    <label>Role Description</label>
+    <textarea name="roleDescription" placeholder="Describe your responsibilities and achievements"></textarea>
+  </div>
+  
+  <h3>Education</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Institution</label>
+      <input name="educationCollege" type="text">
+    </div>
+    <div class="form-group">
+      <label>Degree</label>
+      <input name="educationHighest" type="text">
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label>CGPA/Grade</label>
+      <input name="educationCGPA" type="text">
+    </div>
+    <div class="form-group">
+      <label>Graduation Date</label>
+      <input name="educationEnd" type="text" placeholder="MM/YYYY">
+    </div>
+  </div>
+  
+  <h3>Skills</h3>
+  <div class="form-group full-width">
+    <label>Type to Add Skills</label>
+    <textarea name="skills" placeholder="Java, Spring Boot, MySQL, etc."></textarea>
+  </div>
+  
+  <h3>Websites</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label>LinkedIn</label>
+      <input name="linkedin" type="url">
+    </div>
+    <div class="form-group">
+      <label>GitHub</label>
+      <input name="github" type="url">
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label>Portfolio</label>
+      <input name="portfolio" type="url">
+    </div>
+    <div class="form-group"></div>
+  </div>
+</div>
+
+<div class="form-section">
+  <h2>Application Questions 1 of 2</h2>
+  
+  <div class="form-group full-width">
+    <label class="required">Do you have a relevant work permit to work in the country in which this job is located?</label>
+    <select name="workPermit" required>
+      <option value="">Select One</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  
+  <div class="form-group full-width">
+    <label class="required">I confirm that I'm 18 years old or elder, or, according to local legislation, I am permitted to work in the job I am applying for even if I am under 18 years old.</label>
+    <select name="ageConfirmation" required>
+      <option value="">Select One</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  
+  <div class="form-group full-width">
+    <label class="required">What is your salary expectations (e.g. Base, bonus, allowances etc.)?</label>
+    <input name="salaryExpectation" type="text" required>
+  </div>
+  
+  <div class="form-group full-width">
+    <label class="required">If you are successful in this role what would be your notice period?</label>
+    <input name="noticePeriod" type="text" required>
+  </div>
+  
+  <div class="form-group full-width">
+    <label class="required">Have you been or are you at the moment working for ABB as a third party contractor?</label>
+    <select name="thirdPartyContractor" required>
+      <option value="">Select One</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+  
+  <div class="form-group full-width">
+    <label class="required">Are you willing to be contacted for future job opportunities as well as to receive talent related communications, including for career events?</label>
+    <select name="futureOpportunities" required>
+      <option value="">Select One</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-section">
+  <h2>Application Questions 2 of 2</h2>
+  
+  <div class="form-group full-width">
+    <label class="required">Do you have citizenship or permanent/temporary residence in one of the following countries/regions?</label>
+    <select name="citizenship" required>
+      <option value="">Select One</option>
+      <option value="Belarus">Belarus</option>
+      <option value="Cuba">Cuba</option>
+      <option value="Iran">Iran</option>
+      <option value="North Korea">North Korea</option>
+      <option value="Russia">Russia</option>
+      <option value="Syria">Syria</option>
+      <option value="Crimea, Kherson, Donetsk, Luhansk, or Zaporizhzhia regions of Ukraine">Crimea, Kherson, Donetsk, Luhansk, or Zaporizhzhia regions of Ukraine</option>
+      <option value="None of the above">None of the above</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-section">
+  <h2>Additional Information</h2>
+  
+  <div class="form-group full-width">
+    <label>Cover Letter</label>
+    <textarea name="coverLetter" style="height: 200px;" placeholder="Write your cover letter here..."></textarea>
+  </div>
+  
+  <div class="form-group full-width">
+    <label>Resume/CV Link</label>
+    <input name="resumeLink" type="url" placeholder="https://...">
+  </div>
+</div>
+
+<div class="form-section">
+  <button type="button" class="btn" onclick="testAutofill()">Test Auto-Fill Extension</button>
+  <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+</div>
 
 <script>
 function clearForm() {
-  document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input, textarea, select').forEach(el => {
+    if (el.type === 'checkbox') {
+      el.checked = false;
+    } else {
+      el.value = '';
+    }
+  });
+}
+
+function testAutofill() {
+  alert('Click your extension icon and then "Auto-Fill Form" to test!');
 }
 </script>
 
-</body></html>
+</body>
+</html>
